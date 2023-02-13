@@ -6,6 +6,8 @@ locals {
 
   # Configuration for managing add-ons via ArgoCD.
   argocd_addon_config = {
+    awsS3controller           = var.enable_ack_s3_controller ? module.ack_s3_controller[0].argocd_gitops_config : null
+    
     agones                    = var.enable_agones ? module.agones[0].argocd_gitops_config : null
     awsEfsCsiDriver           = var.enable_aws_efs_csi_driver ? module.aws_efs_csi_driver[0].argocd_gitops_config : null
     awsFSxCsiDriver           = var.enable_aws_fsx_csi_driver ? module.aws_fsx_csi_driver[0].argocd_gitops_config : null
